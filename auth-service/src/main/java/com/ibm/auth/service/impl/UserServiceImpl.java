@@ -1,12 +1,14 @@
 package com.ibm.auth.service.impl;
 
 import com.ibm.auth.common.exception.EmailAlreadyExistsException;
+import com.ibm.auth.common.exception.ResourceNotFoundException;
 import com.ibm.auth.common.exception.UserNotFoundException;
 import com.ibm.auth.common.exception.UsernameAlreadyExistsException;
 import com.ibm.auth.common.payload.ApiResponse;
 import com.ibm.auth.entity.User;
 import com.ibm.auth.payload.enums.Role;
 import com.ibm.auth.payload.request.UpdateUserRequest;
+import com.ibm.auth.payload.response.SearchResponse;
 import com.ibm.auth.payload.response.UserResponse;
 import com.ibm.auth.repository.UserRepository;
 import com.ibm.auth.service.UserService;
@@ -261,6 +263,24 @@ public class UserServiceImpl implements UserService {
 
                 return user.getRoles()
                                 .contains(Role.ROLE_ADMIN);
+        }
+
+        @Override
+        public ApiResponse<SearchResponse> getUserByEmployeeId(String employeeId) {
+
+                User user = userRepository.findByEmployeeId(employeeId)
+                        .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+                SearchResponse response = SearchResponse.builder()
+                        .id(user.getId())
+                        .employeeId(user.getEmployeeId())
+                        .username(user.getUsername())
+                        .email(user.getEmail())
+                        .roles(user.getRoles())
+                        .enabled(user.isEnabled())
+                        .build();
+
+                return new ApiResponse<>(true, "User found", response);
         }
 
 }

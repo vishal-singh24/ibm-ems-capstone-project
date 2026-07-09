@@ -108,9 +108,4 @@ public class PasswordController {
 
         return ResponseEntity.ok(new ApiResponse(true, "Password changed successfully"));
     }
-
-    @ExceptionHandler(PasswordRecoveryException.class)
-    public ResponseEntity<ApiResponse> handlePasswordRecoveryException(PasswordRecoveryException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, ex.getMessage()));
-    }
 }

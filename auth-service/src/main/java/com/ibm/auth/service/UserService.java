@@ -3,6 +3,7 @@ package com.ibm.auth.service;
 import com.ibm.auth.common.payload.ApiResponse;
 import com.ibm.auth.payload.enums.Role;
 import com.ibm.auth.payload.request.UpdateUserRequest;
+import com.ibm.auth.payload.response.SearchResponse;
 import com.ibm.auth.payload.response.UserResponse;
 
 import java.util.List;
@@ -18,7 +19,6 @@ public interface UserService {
 
     ApiResponse<UserResponse> updateUser(String id,
             UpdateUserRequest request);
-
     
     ApiResponse<Void> deleteUser(String id);
 
@@ -27,6 +27,8 @@ public interface UserService {
     ApiResponse<Void> enableUser(String id);
 
     ApiResponse<Void> disableUser(String id);
+
+    ApiResponse<SearchResponse> getUserByEmployeeId(String employeeId);
 
 
 }

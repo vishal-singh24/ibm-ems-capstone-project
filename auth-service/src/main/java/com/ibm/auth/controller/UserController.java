@@ -3,6 +3,7 @@ package com.ibm.auth.controller;
 import com.ibm.auth.common.payload.ApiResponse;
 import com.ibm.auth.payload.request.AssignRoleRequest;
 import com.ibm.auth.payload.request.UpdateUserRequest;
+import com.ibm.auth.payload.response.SearchResponse;
 import com.ibm.auth.payload.response.UserResponse;
 import com.ibm.auth.service.UserService;
 import jakarta.validation.Valid;
@@ -79,5 +80,13 @@ public class UserController {
             @PathVariable String id) {
 
         return ResponseEntity.ok(userService.disableUser(id));
+    }
+
+    @GetMapping("/employee/{employeeId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiResponse<SearchResponse>> getUserByEmployeeId(
+            @PathVariable String employeeId) {
+
+        return ResponseEntity.ok(userService.getUserByEmployeeId(employeeId));
     }
 }
