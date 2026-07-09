@@ -1,4 +1,4 @@
-package com.ibm.auth.dto;
+package com.ibm.auth.payload.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

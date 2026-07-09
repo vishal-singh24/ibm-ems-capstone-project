@@ -1,7 +1,7 @@
 package com.ibm.auth.common.exception;
 
 import com.ibm.auth.common.payload.ApiResponse;
-import com.ibm.auth.dto.PasswordDtos;
+import com.ibm.auth.payload.request.PasswordDtos;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
