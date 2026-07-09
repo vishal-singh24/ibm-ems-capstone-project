@@ -20,4 +20,6 @@ public class UserResponse {
 
     private boolean enabled;
 
+    private boolean deleted;
+
 }

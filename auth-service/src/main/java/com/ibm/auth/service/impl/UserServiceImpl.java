@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
                                 .email(user.getEmail())
                                 .roles(user.getRoles())
                                 .enabled(user.isEnabled())
+                                .deleted(user.isDeleted())
                                 .build();
         }
 
@@ -45,11 +46,11 @@ public class UserServiceImpl implements UserService {
         @Override
         public ApiResponse<List<UserResponse>> getAllUsers() {
 
-                List<UserResponse> users = userRepository.findAllByDeletedFalse()
+                List<UserResponse> users = userRepository.findAll()
                                 .stream()
                                 .map(this::mapToResponse)
                                 .toList();
-
+                                
                 return new ApiResponse<>(
                                 true,
                                 "Users fetched successfully",
